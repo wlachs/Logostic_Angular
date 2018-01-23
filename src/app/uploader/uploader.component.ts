@@ -21,15 +21,9 @@ export class UploaderComponent implements OnInit {
       case 'logo': this.logoLoaded = message.value; break;
       default: break;
     }
-
-    this.navigate();
   }
 
   navigate() {
-    if (this.imageLoaded && this.logoLoaded) {
-      setTimeout(() => {
-        this.router.navigate(['/editor']);
-      }, 500);
-    }
+    this.router.navigate(['/editor']);
   }
 }

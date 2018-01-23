@@ -7,4 +7,5 @@
         <app-picker-button checkPosition="right" source="logo" (uploadEvent)="checkImages($event)"></app-picker-button>
       </div>
     </div>
+    <button *ngIf="imageLoaded && logoLoaded" class="btn btn-secondary btn-success next_button mx-auto" (click)="navigate()">Next</button>
 </div>
