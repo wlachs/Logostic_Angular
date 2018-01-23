@@ -1,0 +1,12 @@
+<div class="uploader-container">
+    <div class="logostic-title">Logostic</div>
+    <div class="logostic-title logostic-message">Pick an image and a logo to start editing!</div>
+    <div class="d-flex justify-content-center">
+      <div class="btn-group" role="group">
+        <button type="button" id="image" (click)="uploadImage('image')" [ngClass]="{'disabled':imageLoaded}" class="btn btn-light image">Pick Image</button>
+        <button type="button" id="logo" (click)="uploadImage('logo')" [ngClass]="{'disabled':logoLoaded}" class="btn btn-light logo">Pick Logo</button>
+        <img id="image_check" *ngIf="imageLoaded" class="check_icon" src="../../assets/check.svg">
+        <img id="logo_check" *ngIf="logoLoaded" class="check_icon" src="../../assets/check.svg">
+      </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+.uploader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn {
+    border-color: #CCCCCC;
+    font-size: 30px;
+    font-weight: lighter;
+    padding: 20px 37px;
+}
+
+.image {
+    background-color: #E0DEDE;
+}
+
+.logo {
+    background-color: #EFEFEF;
+}
+
+.check_icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+#image_check {
+    transform: translate(-48%, 40%);
+}
+
+#logo_check {
+    transform: translate(48%, 40%);
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+    .btn {
+        font-size: 20px;
+    }
+}

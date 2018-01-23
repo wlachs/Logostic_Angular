@@ -1,0 +1,95 @@
+#image {
+    margin-bottom: 23px;
+    padding: 0;
+}
+
+#image_container {
+    border: 1px solid black;
+}
+
+.btn {
+    width: 157px;
+    font-size: 24px;
+    color: #fff;
+    font-family: 'Helvetica Neue';
+    font-weight: 300;
+}
+
+#advanced_button {
+    margin-top: 19px;
+}
+
+#advanced_button:hover {
+    color: #fff;
+}
+
+#advanced_button:active {
+    color: #fff;
+}
+
+#reset_button {
+    font-size: 19.2px;
+    width: 146px;
+}
+
+.card {
+    margin-top: 13px;
+    background-color: rgba(240, 173, 78, 0.01);
+}
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+    margin-top: 15px;
+    margin-bottom: 23px;
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.input-group {
+    margin-bottom: 23px;
+}
+
+.input-group-text {
+    position: absolute;
+    right: 0;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+    .title {
+        font-size: 0;
+        margin-top: 15px;
+    }
+}

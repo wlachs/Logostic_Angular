@@ -1,0 +1,40 @@
+<div class="d-flex flex-column align-items-center">
+    <div class="logostic-title title" (click)="backToUpload()">Logostic</div>
+    <div class="logostic-title logostic-message">Drag the logo anywhere on the image!</div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6 offset-lg-3" id="image"><div class="mx-auto" id="image_container"></div></div>
+    <div class="col-12 col-sm-6 col-lg-3 d-flex flex-column mx-auto">
+        <button id="save_button" class="btn btn-secondary btn-success mx-auto" (click)="save()">Save</button>
+        <button id="advanced_button" class="btn btn-secondary btn-warning mx-auto" (click)="advancedSettingsVisible=!advancedSettingsVisible">Advanced</button>
+        <div *ngIf="advancedSettingsVisible" class="card">
+            <div class="card-body d-flex flex-column">
+                <div>Image scale: {{backgroundScale}}</div>
+                <div class="slidecontainer">
+                    <input type="range" [(ngModel)]="backgroundScale" (ngModelChange)="resizeBg()" min="1" max="2" value="1" step="0.01" class="slider">
+                </div>
+                <div>Logo scale: {{logoScale}}</div>
+                <div class="slidecontainer">
+                    <input type="range" [(ngModel)]="logoScale" (ngModelChange)="resizeLogo()" min="0" max="5" value="1" step="0.01" class="slider">
+                </div>
+                <div class="input-group">
+                    Center logo horizontally
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" [checked]="horizontalCenter" (change)="horizontalCenter = !horizontalCenter; applyLogoConstraint();">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    Center logo vertically
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" [checked]="verticalCenter" (change)="verticalCenter = !verticalCenter; applyLogoConstraint();">
+                        </div>
+                    </div>
+                </div>
+                <button id="reset_button" (click)="bgCenter()" class="btn btn-primary btn-danger mx-auto">Reset image</button>
+            </div>
+        </div>
+    </div>
+</div>
