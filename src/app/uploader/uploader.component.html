@@ -3,8 +3,8 @@
     <div class="logostic-title logostic-message">Pick an image and a logo to start editing!</div>
     <div class="d-flex justify-content-center">
       <div class="btn-group" role="group">
-        <app-picker-button checkPosition="left" source="image"></app-picker-button>
-        <app-picker-button checkPosition="right" source="logo"></app-picker-button>
+        <app-picker-button checkPosition="left" source="image" (uploadEvent)="checkImages($event)"></app-picker-button>
+        <app-picker-button checkPosition="right" source="logo" (uploadEvent)="checkImages($event)"></app-picker-button>
       </div>
     </div>
 </div>
