@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-picker-button',
@@ -9,6 +10,7 @@ export class PickerButtonComponent implements OnInit {
 
   @Input() checkPosition;
   @Input() source;
+  @Output() uploadEvent: EventEmitter<{name: String, value: Boolean}> = new EventEmitter();
 
   loaded: boolean = false;
 
@@ -41,6 +43,8 @@ export class PickerButtonComponent implements OnInit {
     if (sessionStorage.getItem(this.source)) {
       this.loaded = true;
     }
+
+    this.uploadEvent.emit({name: this.source, value: this.loaded});
   }
 
   getBase64(key: string, file: File) {
