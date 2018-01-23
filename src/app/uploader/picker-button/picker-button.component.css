@@ -12,6 +12,14 @@
     z-index: 10;
 }
 
+.image {
+    background-color: #E0DEDE;
+}
+
+.logo {
+    background-color: #EFEFEF;
+}
+
 .image_check {
     left: -30px;
 }
