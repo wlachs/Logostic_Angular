@@ -13,6 +13,7 @@ export class PickerButtonComponent implements OnInit {
   @Output() uploadEvent: EventEmitter<{name: String, value: Boolean}> = new EventEmitter();
 
   loaded: boolean = false;
+  showX: boolean = false;
 
   constructor() { }
 
@@ -42,6 +43,8 @@ export class PickerButtonComponent implements OnInit {
   updateVariables() {
     if (sessionStorage.getItem(this.source)) {
       this.loaded = true;
+    } else {
+      this.loaded = false;
     }
 
     this.uploadEvent.emit({name: this.source, value: this.loaded});
@@ -56,4 +59,11 @@ export class PickerButtonComponent implements OnInit {
     };
  }
 
+  delete() {
+    sessionStorage.removeItem(this.source);
+      setTimeout(() => {
+        this.updateVariables();
+    }, 100);
+ }
+ 
 }

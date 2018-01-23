@@ -12,6 +12,14 @@
     z-index: 10;
 }
 
+.cross_icon {
+    position: absolute;
+    top: -15px;
+    height: 50%;
+    z-index: 10;
+    transform: translateX(-190%);
+}
+
 .image {
     background-color: #E0DEDE;
 }
