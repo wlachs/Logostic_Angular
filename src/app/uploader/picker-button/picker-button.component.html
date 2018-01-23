@@ -1,0 +1,6 @@
+<button type="button" [id]="source" (click)="uploadImage()" [ngClass]="{'disabled': loaded}"
+  [ngStyle]="checkPosition === 'left' ? {'background-color': '#E0DEDE'} : {'background-color': '#EFEFEF'}" 
+  class="btn btn-light image">Pick {{source | firstUppercase}}
+</button>
+<img *ngIf="loaded" class="check_icon" src="../../../assets/check.svg"
+[ngClass]="checkPosition === 'left' ? 'image_check' : 'logo_check'">

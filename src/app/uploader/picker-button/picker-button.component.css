@@ -1,0 +1,27 @@
+.btn {
+    border-color: #CCCCCC;
+    font-size: 30px;
+    font-weight: lighter;
+    padding: 20px 37px;
+}
+
+.check_icon {
+    position: absolute;
+    top: 40px;
+    height: 100%;
+    z-index: 10;
+}
+
+.image_check {
+    left: -30px;
+}
+
+.logo_check {
+    right: -30px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+    .btn {
+        font-size: 20px;
+    }
+}
