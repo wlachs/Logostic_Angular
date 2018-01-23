@@ -1,4 +1,6 @@
 <button
   type="button" [id]="source" (click)="uploadImage()" [ngClass]="{'disabled': loaded, 'image': source === 'image', 'logo': source === 'logo'}"
-  class="btn btn-light">Pick {{source | firstUppercase}} </button>
+  class="btn btn-light" (mouseenter)="showX = true" (mouseleave)="showX = false">Pick {{source | firstUppercase}}
+  <img *ngIf="showX && loaded" (click)="delete()" class="cross_icon" src="../../../assets/cross.png" [ngClass]="checkPosition === 'left' ? 'image_cross' : 'logo_cross'">
+</button>
 <img *ngIf="loaded" class="check_icon" src="../../../assets/check.svg" [ngClass]="checkPosition === 'left' ? 'image_check' : 'logo_check'">
