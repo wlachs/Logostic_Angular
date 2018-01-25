@@ -7,11 +7,11 @@ enum CheckPosition {
 }
 
 @Component({
-  selector: 'app-picker-button',
-  templateUrl: './picker-button.component.html',
-  styleUrls: ['./picker-button.component.css']
+  selector: 'app-picker-buttons',
+  templateUrl: './picker-buttons.component.html',
+  styleUrls: ['./picker-buttons.component.css']
 })
-export class PickerButtonComponent implements OnInit {
+export class PickerButtonsComponent implements OnInit {
 
   @Output() uploadEvent: EventEmitter<{name: String, value: Boolean}> = new EventEmitter();
 

@@ -2,7 +2,7 @@
     <div class="logostic-title">Logostic</div>
     <div class="logostic-title logostic-message">Pick an image and a logo to start editing!</div>
     <div class="d-flex justify-content-center">
-      <app-picker-button (uploadEvent)="checkImages($event)"></app-picker-button>
+      <app-picker-buttons (uploadEvent)="checkImages($event)"></app-picker-buttons>
     </div>
     <button *ngIf="imagesLoaded" class="btn btn-secondary btn-success next_button mx-auto" (click)="navigate()">Next</button>
 </div>
