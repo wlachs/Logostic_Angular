@@ -1,11 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
-enum CheckPosition {
-  Left,
-  Right
-}
-
 @Component({
   selector: 'app-picker-buttons',
   templateUrl: './picker-buttons.component.html',
@@ -15,17 +10,15 @@ export class PickerButtonsComponent implements OnInit {
 
   @Output() uploadEvent: EventEmitter<{name: String, value: Boolean}> = new EventEmitter();
 
-  buttons: [{name: string, color: string, checkPosition: CheckPosition, uploaded: boolean}] = [
+  buttons: [{name: string, checkPosition: string, uploaded: boolean}] = [
     {
       name: 'image',
-      color: '#E0DEDE',
-      checkPosition: CheckPosition.Left,
+      checkPosition: 'left',
       uploaded: undefined
     },
     {
       name: 'logo',
-      color: '#EFEFEF',
-      checkPosition: CheckPosition.Right,
+      checkPosition: 'right',
       uploaded: undefined
     }
   ];
