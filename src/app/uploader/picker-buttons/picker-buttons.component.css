@@ -20,19 +20,19 @@
     transform: translateX(-190%);
 }
 
-.image {
+.left {
     background-color: #E0DEDE;
 }
 
-.logo {
+.right {
     background-color: #EFEFEF;
 }
 
-.image_check {
+.left_check {
     left: -30px;
 }
 
-.logo_check {
+.right_check {
     right: -30px;
 }
 
