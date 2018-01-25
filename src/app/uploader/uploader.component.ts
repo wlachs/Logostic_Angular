@@ -8,19 +8,14 @@ import { Router } from '@angular/router';
 })
 export class UploaderComponent implements OnInit {
 
-  private imageLoaded: Boolean = false;
-  private logoLoaded: Boolean = false;
+  private imagesLoaded: Boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() { }
 
   checkImages(message: {name: String, value: Boolean}) {
-    switch (message.name){
-      case 'image': this.imageLoaded = message.value; break;
-      case 'logo': this.logoLoaded = message.value; break;
-      default: break;
-    }
+    this.imagesLoaded = message.value;
   }
 
   navigate() {

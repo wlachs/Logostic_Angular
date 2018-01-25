@@ -1,6 +1,11 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
+enum CheckPosition {
+  Left,
+  Right
+}
+
 @Component({
   selector: 'app-picker-button',
   templateUrl: './picker-button.component.html',
@@ -8,12 +13,22 @@ import { EventEmitter } from '@angular/core';
 })
 export class PickerButtonComponent implements OnInit {
 
-  @Input() checkPosition;
-  @Input() source;
   @Output() uploadEvent: EventEmitter<{name: String, value: Boolean}> = new EventEmitter();
 
-  loaded: boolean = false;
-  showX: boolean = false;
+  buttons: [{name: string, color: string, checkPosition: CheckPosition, uploaded: boolean}] = [
+    {
+      name: 'image',
+      color: '#E0DEDE',
+      checkPosition: CheckPosition.Left,
+      uploaded: undefined
+    },
+    {
+      name: 'logo',
+      color: '#EFEFEF',
+      checkPosition: CheckPosition.Right,
+      uploaded: undefined
+    }
+  ];
 
   constructor() { }
 
@@ -21,8 +36,8 @@ export class PickerButtonComponent implements OnInit {
     this.updateVariables();
   }
 
-  uploadImage() {
-    if(document.getElementById(this.source).classList.contains('disabled')) {
+  uploadImage(name: string) {
+    if(document.getElementById(name).classList.contains('disabled')) {
       return;
     }
 
@@ -35,19 +50,26 @@ export class PickerButtonComponent implements OnInit {
 
     let handleFiles = () => {
       let image = uploadFile.files[0];
-      this.getBase64(this.source, image);
+      this.getBase64(name, image);
     };
     uploadFile.addEventListener("change", handleFiles, false);
   }
 
   updateVariables() {
-    if (sessionStorage.getItem(this.source)) {
-      this.loaded = true;
-    } else {
-      this.loaded = false;
+    for (let i = 0; i < this.buttons.length; i++) {
+      if (sessionStorage.getItem(this.buttons[i].name)) {
+        this.buttons[i].uploaded = true;
+      } else {
+        this.buttons[i].uploaded = false;
+      }
     }
 
-    this.uploadEvent.emit({name: this.source, value: this.loaded});
+    let trues = 0;
+    this.buttons.forEach( (button) => {
+      trues += button.uploaded ? 1 : 0;
+    });
+
+    this.uploadEvent.emit({name: null, value: trues === this.buttons.length});
   }
 
   getBase64(key: string, file: File) {
@@ -59,8 +81,8 @@ export class PickerButtonComponent implements OnInit {
     };
  }
 
-  delete() {
-    sessionStorage.removeItem(this.source);
+  delete(name: string) {
+    sessionStorage.removeItem(name);
       setTimeout(() => {
         this.updateVariables();
     }, 100);

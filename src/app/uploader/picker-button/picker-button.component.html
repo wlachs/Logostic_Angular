@@ -1,6 +1,15 @@
-<button
-  type="button" [id]="source" (click)="uploadImage()" [ngClass]="{'disabled': loaded, 'image': source === 'image', 'logo': source === 'logo'}"
-  class="btn btn-light" (mouseenter)="showX = true" (mouseleave)="showX = false">Pick {{source | firstUppercase}}
-  <img *ngIf="showX && loaded" (click)="delete()" class="cross_icon" src="../../../assets/cross.png" [ngClass]="checkPosition === 'left' ? 'image_cross' : 'logo_cross'">
-</button>
-<img *ngIf="loaded" class="check_icon" src="../../../assets/check.svg" [ngClass]="checkPosition === 'left' ? 'image_check' : 'logo_check'">
+<div class="btn-group" role="group">
+  <button
+    [id]="source" (click)="uploadImage()" [ngClass]="{'disabled': loaded, 'image': source === 'image', 'logo': source === 'logo'}"
+    class="btn btn-light" (mouseenter)="showX = true" (mouseleave)="showX = false">Pick 
+    <img *ngIf="showX && loaded" (click)="delete()" class="cross_icon" src="../../../assets/cross.png" [ngClass]="checkPosition === 'left' ? 'image_cross' : 'logo_cross'">
+    <img *ngIf="loaded" class="check_icon" src="../../../assets/check.svg" [ngClass]="checkPosition === 'left' ? 'image_check' : 'logo_check'">
+  </button>
+
+  <button *ngFor="let button of buttons" class="btn btn-light" [id]="button.name"
+    (click)="uploadImage(button.name)" [ngClass]="{'disabled': button.uploaded}">
+    Pick {{ button.name | firstUppercase }}
+    <img *ngIf="button.uploaded" (click)="delete(button.name)" class="cross_icon" src="../../../assets/cross.png" [ngClass]="checkPosition === 'left' ? 'image_cross' : 'logo_cross'">
+    <img *ngIf="button.uploaded" class="check_icon" src="../../../assets/check.svg" [ngClass]="checkPosition === 'left' ? 'image_check' : 'logo_check'">
+  </button>
+</div>
