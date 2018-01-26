@@ -4,7 +4,7 @@ node_js:
 
 branches:
    only:
-      - continous_everything
+      - /.*/
 
 before_script:
    - npm install -g @angular/cli
