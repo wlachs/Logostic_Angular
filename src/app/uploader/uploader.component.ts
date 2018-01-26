@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class UploaderComponent implements OnInit {
 
-  private imagesLoaded: Boolean = false;
+  imagesLoaded: Boolean = false;
 
   constructor(private router: Router) { }
 
