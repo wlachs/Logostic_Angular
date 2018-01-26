@@ -6,11 +6,18 @@ branches:
    only:
       - /.*/
 
+before_install:
+   - npm install -g greenkeeper-lockfile@1
+
 before_script:
    - npm install -g @angular/cli
+   - greenkeeper-lockfile-update
 
 script:
    - ng build --prod --aot
+
+after_script:
+   - greenkeeper-lockfile-upload
 
 deploy:
    provider: firebase
