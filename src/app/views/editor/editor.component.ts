@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Konva from 'konva';
-import { HDFormatter } from './hdformatter';
 import { Router } from '@angular/router';
+import { ImageService } from '../../services/image-service/image.service';
 
 /**
  * Editor view
@@ -24,7 +24,7 @@ export class EditorComponent implements OnInit {
   verticalCenter: Boolean = false;
   horizontalCenter: Boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private imageService: ImageService) { }
 
   /**
    * On component load
@@ -138,10 +138,8 @@ export class EditorComponent implements OnInit {
    */
   loadLogo: any = resolve => {
     let imageObj2 = new Image();
-    //TODO: switch to the image given by user
-    //imageObj2.src = '../../assets/Fahrschule Leis Marl Logo.png';
-    imageObj2.src = sessionStorage.getItem('logo');
 
+    imageObj2.src = sessionStorage.getItem('logo');
     imageObj2.onload = () => {
       this.logoImage.image(imageObj2);
 
@@ -303,7 +301,7 @@ export class EditorComponent implements OnInit {
    * Export canvas as a JPG
    */
   save() {
-    let hdImage = HDFormatter.format(this.canvas.clone() as Konva.Stage, this.backgroundImage);
+    let hdImage = this.imageService.format(this.canvas.clone() as Konva.Stage, this.backgroundImage);
 
     // function from https://stackoverflow.com/a/15832662/512042
     let downloadURI = (uri, name) => {
