@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PickerButtonComponent } from './picker-button.component';
+import { PickerButtonsComponent } from './picker-buttons.component';
 
 describe('PickerButtonComponent', () => {
-  let component: PickerButtonComponent;
-  let fixture: ComponentFixture<PickerButtonComponent>;
+  let component: PickerButtonsComponent;
+  let fixture: ComponentFixture<PickerButtonsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PickerButtonComponent ]
+      declarations: [ PickerButtonsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PickerButtonComponent);
+    fixture = TestBed.createComponent(PickerButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
