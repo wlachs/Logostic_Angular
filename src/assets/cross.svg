@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg636" height="256pt" width="256pt" version="1.0">
+  <metadata id="metadata72">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs id="defs638">
+    <linearGradient id="linearGradient3227">
+      <stop offset="0" style="stop-color:#ff9999;stop-opacity:1" id="stop3229" />
+      <stop offset="1" style="stop-color:#ff0000;stop-opacity:1" id="stop3231" />
+    </linearGradient>
+    <linearGradient id="linearGradient3219">
+      <stop offset="0" style="stop-color:#000000;stop-opacity:1" id="stop3221" />
+      <stop offset="1" style="stop-color:#000000;stop-opacity:0" id="stop3223" />
+    </linearGradient>
+    <linearGradient id="linearGradient2807">
+      <stop offset="0" style="stop-color:#000022;stop-opacity:0" id="stop2809" />
+      <stop offset="1" style="stop-color:#000022;stop-opacity:0.38999999" id="stop2811" />
+    </linearGradient>
+    <linearGradient id="linearGradient684">
+      <stop offset="0" style="stop-color:#ffe51a;stop-opacity:1" id="stop685" />
+      <stop offset="1" style="stop-color:#e60000;stop-opacity:0" id="stop686" />
+    </linearGradient>
+    <linearGradient id="linearGradient649">
+      <stop offset="0" style="stop-color:#ffffff;stop-opacity:1" id="stop650" />
+      <stop offset="1" style="stop-color:#000000;stop-opacity:0.47839999" id="stop651" />
+    </linearGradient>
+    <linearGradient spreadMethod="pad" gradientUnits="objectBoundingBox" xlink:href="#linearGradient684" id="linearGradient652" y2="-0.2906" x2="1.036" y1="0.5774" x1="0.3968" />
+    <radialGradient gradientTransform="matrix(1.199,0,0,0.8339,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient653" fy="622.3" fx="314.4" r="129.4" cy="622.3" cx="314.4" />
+    <radialGradient gradientTransform="matrix(3.006,0,0,0.3327,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient654" fy="2007" fx="77.7" r="25.95" cy="2007" cx="77.7" />
+    <radialGradient gradientTransform="matrix(0.9287,0,0,1.077,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient875" fy="873.3" fx="637" r="84.83" cy="873.3" cx="637" />
+    <radialGradient gradientTransform="matrix(0.5519,0,0,1.812,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient877" fy="353.9" fx="248.9" r="82.69" cy="353.9" cx="248.9" />
+    <radialGradient xlink:href="#linearGradient684" id="radialGradient683" fy="0.1094" fx="0.1718" r="1.659" cy="0.1094" cx="0.1718" />
+    <radialGradient xlink:href="#linearGradient684" id="radialGradient687" />
+    <radialGradient gradientTransform="matrix(2.013,0,0,0.4969,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1363" fy="1441" fx="254.3" r="42.65" cy="1441" cx="254.3" />
+    <radialGradient gradientTransform="matrix(0.5982,0,0,1.672,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1365" fy="373.5" fx="769.3" r="57.69" cy="373.5" cx="769.3" />
+    <radialGradient gradientTransform="matrix(0.9741,0,0,1.027,115.1,295.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1367" fy="585.3" fx="310.9" r="75.7" cy="585.3" cx="310.9" />
+    <radialGradient gradientTransform="matrix(1.199,0,0,0.8339,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1413" fy="622.3" fx="314.4" r="129.4" cy="622.3" cx="314.4" />
+    <radialGradient gradientTransform="matrix(2.013,0,0,0.4969,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1415" fy="1441" fx="254.3" r="42.65" cy="1441" cx="254.3" />
+    <radialGradient gradientTransform="matrix(0.5982,0,0,1.672,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1417" fy="373.5" fx="769.3" r="57.69" cy="373.5" cx="769.3" />
+    <radialGradient gradientTransform="matrix(0.9741,0,0,1.027,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1419" fy="585.3" fx="310.9" r="75.7" cy="585.3" cx="310.9" />
+    <radialGradient gradientTransform="matrix(3.006,0,0,0.3327,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1421" fy="2007" fx="77.7" r="25.95" cy="2007" cx="77.7" />
+    <radialGradient gradientTransform="matrix(0.9287,0,0,1.077,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1423" fy="873.3" fx="637" r="84.83" cy="873.3" cx="637" />
+    <radialGradient gradientTransform="matrix(0.5519,0,0,1.812,104,285.4)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient649" id="radialGradient1425" fy="353.9" fx="248.9" r="82.69" cy="353.9" cx="248.9" />
+    <mask id="mask2920">
+      <path style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5051;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" id="path2918" transform="matrix(0.9966,0,0,0.9966,2.02,0.5252)" d="m 304,156.5 c 0,82.3 -66.7,149 -149,149 C 72.71,305.5 6,238.8 6,156.5 6,74.21 72.71,7.5 155,7.5 c 82.3,0 149,66.71 149,149 z" />
+    </mask>
+    <radialGradient gradientTransform="matrix(2.573,0,0,2.573,-163.9,-160.6)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient2807" id="radialGradient2815" fy="100.9" fx="105.2" r="149" cy="100.9" cx="105.2" />
+    <linearGradient gradientTransform="matrix(0.9535,0,0,0.9537,23.4,19.48)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient3227" id="linearGradient3283" y2="276.5" x2="277.2" y1="38.5" x1="31.78" />
+  </defs>
+  <path style="display:inline;overflow:visible;visibility:visible;opacity:0.4;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:20;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" id="path3277" d="m 74.47,20.7 c -2.61,0 -5.1,1.09 -6.94,2.93 L 23.72,67.48 c -3.89,3.91 -3.89,10.23 0,14.15 l 88.98,89.07 -88.98,89 c -3.89,3.9 -3.89,10.2 0,14.1 l 43.81,43.9 c 1.88,1.8 4.44,2.9 7.1,2.9 2.65,0 5.18,-1.1 7.06,-2.9 l 89.01,-89.1 89,89.1 c 1.8,1.8 4.4,2.9 7,2.9 2.7,0 5.2,-1.1 7.1,-2.9 l 43.8,-43.9 c 3.9,-3.9 3.9,-10.2 0,-14.1 l -89,-89 89,-89.07 c 3.9,-3.92 3.9,-10.24 0,-14.15 L 273.8,23.63 c -1.9,-1.87 -4.4,-2.93 -7.1,-2.93 -2.6,0 -5.2,1.06 -7,2.93 L 170.7,112.6 81.69,23.63 C 79.78,21.72 77.18,20.66 74.47,20.7 Z" />
+  <path style="display:inline;overflow:visible;visibility:visible;opacity:1;fill:url(#linearGradient3283);fill-opacity:1;fill-rule:evenodd;stroke:#ca0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate" id="rect2436" d="m 266.7,30.7 -96,96.1 -96.06,-96.1 -43.83,43.85 95.99,96.15 -95.99,96.1 43.83,43.8 96.06,-96.1 96,96.1 43.8,-43.8 -96,-96.1 96,-96.15 z" />
+</svg>
