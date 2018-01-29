@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ng2PicaService } from 'ng2-pica';
 
 @Component({
   selector: 'app-uploader',
@@ -10,7 +11,7 @@ export class UploaderComponent implements OnInit {
 
   imagesLoaded: Boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ng2PicaService: Ng2PicaService) { }
 
   ngOnInit() { }
 

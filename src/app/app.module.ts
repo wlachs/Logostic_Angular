@@ -2,6 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Ng2PicaModule } from 'ng2-pica';
 
 import { AppComponent } from './app.component';
 import { EditorComponent } from './views/editor/editor.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    Ng2PicaModule,
     RouterModule.forRoot(
       routes,
       { enableTracing: true } // <-- debugging purposes only
