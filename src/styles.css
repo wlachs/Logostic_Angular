@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
 #body-m {
     background-color: #FDF6F6;
   }
 
 .logostic-title {
-  font-family: 'Helvetica Neue';
-  font-weight: 300;
+  font-weight: 200;
   font-size: 72px;
   text-align: center;
 }
