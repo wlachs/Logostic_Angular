@@ -62,6 +62,10 @@ export class UploaderComponent implements OnInit {
       if (sessionStorage.getItem(image.name)) {
         this.navigate();
       }
+      else if (image.file.type.indexOf('svg')) { // SVG resize not supported
+        this.getBase64(image.name, image.file)
+          .then( () => this.navigate());
+      }
       else {
         this.imageService.resizeImage(image.file)
           .then( (resizedImage: File) => this.getBase64(image.name, resizedImage))
