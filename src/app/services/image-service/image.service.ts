@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Konva from 'konva';
+import { Ng2PicaService } from 'ng2-pica';
 
 /**
  * Scale the whole image to be the same size as the background
@@ -8,7 +9,7 @@ import * as Konva from 'konva';
 @Injectable()
 export class ImageService {
 
-  constructor() { }
+  constructor(private ng2PicaService: Ng2PicaService) { }
   
   /**
   * Upsize and convert canvas elements to image
@@ -37,5 +38,16 @@ export class ImageService {
     });
 
     return raw;
+  }
+
+  /**
+   * Resize image to match the size of the window
+   * @param image Input file
+   */
+  resizeImage(image: File) {
+    return new Promise( (resolve, reject) => {
+      this.ng2PicaService.resize([image], window.innerWidth, window.innerHeight, true)
+        .subscribe( result => resolve(result) );
+    });
   }
 }
