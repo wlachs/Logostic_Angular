@@ -31,7 +31,7 @@ const routes: Routes = [
     Ng2PicaModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   bootstrap: [AppComponent],
