@@ -4,5 +4,5 @@
     <div class="d-flex justify-content-center">
       <app-picker-buttons (uploadEvent)="checkImages($event)"></app-picker-buttons>
     </div>
-    <button *ngIf="imagesLoaded" class="btn btn-secondary btn-success next_button mx-auto" (click)="navigate()">Next</button>
+    <button *ngIf="imagesLoaded" class="btn btn-secondary btn-success next_button mx-auto" (click)="encodeImages()">Next</button>
 </div>
