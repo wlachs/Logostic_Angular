@@ -11,7 +11,6 @@
     width: 157px;
     font-size: 24px;
     color: #fff;
-    font-family: 'Helvetica Neue';
     font-weight: 300;
 }
 
@@ -28,7 +27,8 @@
 }
 
 #reset_button {
-    font-size: 19.2px;
+    font-size: 19px;
+    font-weight: 200;
     width: 146px;
 }
 
