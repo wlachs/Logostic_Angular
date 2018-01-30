@@ -46,7 +46,7 @@ export class ImageService {
    */
   resizeImage(image: File) {
     return new Promise( (resolve, reject) => {
-      this.ng2PicaService.resize([image], window.innerWidth, window.innerHeight, true)
+      this.ng2PicaService.resize([image], Math.max(window.innerWidth, 800), Math.max(window.innerHeight, 600), true)
         .subscribe( result => resolve(result) );
     });
   }
