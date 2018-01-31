@@ -109,12 +109,11 @@ export class EditorComponent implements OnInit {
   
       imageObj1.onload = () => this.fixOrientation(imageObj1)
         .then( (rotation: number ) => {
-          this.backgroundImage.image(imageObj1);
-  
-          // Rotation correction
-          let width, height;
-          this.backgroundImage.offset({x: imageObj1.width / 2, y: imageObj1.height / 2});
 
+          // Rotation correction
+          let width: number, height: number;
+          this.backgroundImage.offset({x: imageObj1.width / 2, y: imageObj1.height / 2});
+          
           if (rotation === 0 || rotation === 180) {
             width = imageObj1.width;
             height = imageObj1.height;
@@ -123,35 +122,39 @@ export class EditorComponent implements OnInit {
             height = imageObj1.width;
           }
 
-          this.backgroundImage.position({x: width / 2, y: height / 2});
-          this.backgroundImage.rotation(rotation);
-    
-          // add the shape to the layer
-          this.backgroundLayer.clear();
-          this.backgroundLayer.add(this.backgroundImage);
-    
-          // add the layer to the stage
-          this.canvas.clear();
-          this.canvas.add(this.backgroundLayer);
-    
+          if (!this.backgroundImage.image()) {
+            this.backgroundImage.image(imageObj1);
+
+            this.backgroundImage.position({x: width / 2, y: height / 2});
+            this.backgroundImage.rotation(rotation);
+      
+            // add the shape to the layer
+            this.backgroundLayer.clear();
+            this.backgroundLayer.add(this.backgroundImage);
+      
+            // add the layer to the stage
+            this.canvas.clear();
+            this.canvas.add(this.backgroundLayer);
+          }
+
           //everything must fit on screen
           //let maxPossibleHeight = this.getMaxHeightAvailable();
-    
+      
           let scaling = this.canvas.width() / width;
-    
+      
           //scaling = height * scaling > maxPossibleHeight ? maxPossibleHeight / height : scaling;
-    
+      
           this.canvas.scale({
             x: scaling,
             y: scaling
           });
           this.canvas.setWidth(width * scaling);
           this.canvas.setHeight(height * scaling);
-    
+      
           // Set container width
           var imageContainer = document.getElementById('image_container');
           imageContainer.setAttribute('style', `width: ${width * scaling}px`);
-            
+              
           this.applyBackgroundConstraint();
           resolve();
         });
@@ -188,10 +191,8 @@ export class EditorComponent implements OnInit {
       imageObj2.src = sessionStorage.getItem('logo');
       imageObj2.onload = () => this.fixOrientation(imageObj2)
         .then( (rotation: number ) => {
-          this.logoImage.image(imageObj2);
-
           // Rotation correction
-          let width, height;
+          let width: number, height: number;
           this.logoImage.offset({x: imageObj2.width / 2, y: imageObj2.height / 2});
           this.logoImage.rotation(rotation);
           
@@ -202,14 +203,7 @@ export class EditorComponent implements OnInit {
             width = imageObj2.height;
             height = imageObj2.width;
           }
-    
-          // add the shape to the layer
-          this.logoLayer.clear();
-          this.logoLayer.add(this.logoImage);
-    
-          // add the layer to the stage
-          this.canvas.add(this.logoLayer);
-    
+
           // Scaling
           let scaling = this.canvas.width() / width / this.canvas.scaleX();
           scaling =
@@ -224,8 +218,18 @@ export class EditorComponent implements OnInit {
             y: scaling
           });
 
-          // Logo initial position
-          this.logoLayer.position({x: width * scaling * this.logoScale / 2, y: height * scaling * this.logoScale / 2});
+          if (!this.logoImage.image()) {
+            this.logoImage.image(imageObj2);
+
+            // add the shape to the layer
+            this.logoLayer.clear();
+            this.logoLayer.add(this.logoImage);
+      
+            // add the layer to the stage
+            this.canvas.add(this.logoLayer);
+            // Logo initial position
+            this.logoLayer.position({x: width * scaling * this.logoScale / 2, y: height * scaling * this.logoScale / 2});
+          }
     
           this.applyLogoConstraint();
           resolve();
