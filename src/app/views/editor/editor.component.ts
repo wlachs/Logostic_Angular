@@ -331,7 +331,9 @@ export class EditorComponent implements OnInit {
    */
   save() {
     let hdImage = this.imageService.format(this.canvas.clone() as Konva.Stage, this.backgroundImage);
+    this.router.navigate(['/save', {data: hdImage}]);
 
+    /*
     // function from https://stackoverflow.com/a/15832662/512042
     let downloadURI = (uri, name) => {
       let date = new Date();
@@ -344,6 +346,7 @@ export class EditorComponent implements OnInit {
     }
 
     downloadURI(hdImage, 'image');
+    */
   }
 
   backToUpload() {
