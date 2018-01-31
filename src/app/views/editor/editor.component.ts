@@ -135,11 +135,11 @@ export class EditorComponent implements OnInit {
           this.canvas.add(this.backgroundLayer);
     
           //everything must fit on screen
-          let maxPossibleHeight = this.getMaxHeightAvailable();
+          //let maxPossibleHeight = this.getMaxHeightAvailable();
     
           let scaling = this.canvas.width() / width;
     
-          scaling = height * scaling > maxPossibleHeight ? maxPossibleHeight / height : scaling;
+          //scaling = height * scaling > maxPossibleHeight ? maxPossibleHeight / height : scaling;
     
           this.canvas.scale({
             x: scaling,
@@ -338,21 +338,6 @@ export class EditorComponent implements OnInit {
     let hdImage = this.imageService.format(this.canvas.clone() as Konva.Stage, this.backgroundImage);
     this.sessionService.storeExportableImage(hdImage);
     this.router.navigate(['/save']);
-
-    /*
-    // function from https://stackoverflow.com/a/15832662/512042
-    let downloadURI = (uri, name) => {
-      let date = new Date();
-      var link = document.createElement("a");
-      link.download = `${name}_${date.getHours()}T${date.getMinutes()}.jpg`;
-      link.href = uri;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    downloadURI(hdImage, 'image');
-    */
   }
 
   backToUpload() {
