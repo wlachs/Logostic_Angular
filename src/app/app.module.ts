@@ -10,11 +10,13 @@ import { UploaderComponent } from './views/uploader/uploader.component';
 import { PickerButtonsComponent } from './views/uploader/picker-buttons/picker-buttons.component';
 import { FirstUppercasePipe } from './views/uploader/picker-buttons/first-uppercase.pipe';
 import { ImageService } from './services/image-service/image.service';
+import { SaveComponent } from './views/save/save.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/uploader', pathMatch: 'full' },
   { path: 'uploader', component: UploaderComponent },
-  { path: 'editor', component: EditorComponent }
+  { path: 'editor', component: EditorComponent },
+  { path: 'save', component: SaveComponent }
 ];
 
 @NgModule({
@@ -23,7 +25,8 @@ const routes: Routes = [
     EditorComponent,
     UploaderComponent,
     PickerButtonsComponent,
-    FirstUppercasePipe
+    FirstUppercasePipe,
+    SaveComponent
   ],
   imports: [
     BrowserModule,
