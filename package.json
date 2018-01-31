@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "core-js": "^2.4.1",
+    "exif-js": "^2.3.0",
     "konva": "^1.7.6",
     "ng2-pica": "^1.2.8",
     "rxjs": "^5.5.2",

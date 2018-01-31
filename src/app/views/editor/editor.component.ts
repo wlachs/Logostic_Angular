@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Konva from 'konva';
 import { Router } from '@angular/router';
 import { ImageService } from '../../services/image-service/image.service';
+import * as EXIF from 'exif-js';
 
 /**
  * Editor view
@@ -56,15 +57,15 @@ export class EditorComponent implements OnInit {
     });
 
     // Load bg and logo
-    new Promise(this.loadBg).then(() => {
-      new Promise(this.loadLogo).then(() => {
-        this.canvas.draw();
-      });
-    });
+    this.loadBg()
+      .then( () => this.loadLogo() )
+      .then( () => this.canvas.draw() );
 
     window.onresize = () => {
-      //TODO modify stage on resize
-      //this.canvas.setWidth(document.getElementById('image').clientWidth);
+      this.canvas.setWidth(document.getElementById('image').clientWidth);
+      this.loadBg()
+        .then( () => this.loadLogo() )
+        .then( () => this.canvas.draw() );
     };
   }
 
@@ -96,73 +97,132 @@ export class EditorComponent implements OnInit {
   /**
    * BG load function
    */
-  loadBg: any = resolve => {
-    let imageObj1 = new Image();
-    //imageObj1.src = '../../assets/bg.png';
-    imageObj1.src = sessionStorage.getItem('image');
+  loadBg() {
+    return new Promise(( resolve, reject ) => {
+      let imageObj1 = new Image();
+      imageObj1.src = sessionStorage.getItem('image');
+  
+      imageObj1.onload = () => this.fixOrientation(imageObj1)
+        .then( (rotation: number ) => {
+          this.backgroundImage.image(imageObj1);
+  
+          // Rotation correction
+          let width, height;
+          this.backgroundImage.offset({x: imageObj1.width / 2, y: imageObj1.height / 2});
 
-    imageObj1.onload = () => {
-      this.backgroundImage.image(imageObj1);
+          if (rotation === 0 || rotation === 180) {
+            width = imageObj1.width;
+            height = imageObj1.height;
+          } else {
+            width = imageObj1.height;
+            height = imageObj1.width;
+          }
 
-      // add the shape to the layer
-      this.backgroundLayer.add(this.backgroundImage);
+          this.backgroundImage.position({x: width / 2, y: height / 2});
+          this.backgroundImage.rotation(rotation);
+    
+          // add the shape to the layer
+          this.backgroundLayer.clear();
+          this.backgroundLayer.add(this.backgroundImage);
+    
+          // add the layer to the stage
+          this.canvas.clear();
+          this.canvas.add(this.backgroundLayer);
+    
+          //everything must fit on screen
+          let maxPossibleHeight = this.getMaxHeightAvailable();
+    
+          let scaling = this.canvas.width() / width;
+    
+          scaling = height * scaling > maxPossibleHeight ? maxPossibleHeight / height : scaling;
+    
+          this.canvas.scale({
+            x: scaling,
+            y: scaling
+          });
+          this.canvas.setWidth(width * scaling);
+          this.canvas.setHeight(height * scaling);
+    
+          // Set container width
+          var imageContainer = document.getElementById('image_container');
+          imageContainer.setAttribute('style', `width: ${width * scaling}px`);
+            
+          this.applyBackgroundConstraint();
+          resolve();
+        });
+    });
+  }
 
-      // add the layer to the stage
-      this.canvas.add(this.backgroundLayer);
+  /**
+   * Fix iPhone image rotation bug
+   * @param imageHTML Source image
+   */
+  fixOrientation(imageHTML: HTMLImageElement) {
+    return new Promise( (resolve, reject) => {
+      EXIF.getData(imageHTML, function() {
+        var allMetaData = EXIF.getAllTags(this);
 
-      //everything must fit on screen
-      let maxPossibleHeight = this.getMaxHeightAvailable();
-
-      let scaling = this.canvas.width() / imageObj1.width;
-
-      scaling = imageObj1.height * scaling > maxPossibleHeight ? maxPossibleHeight / imageObj1.height : scaling;
-
-      this.canvas.scale({
-        x: scaling,
-        y: scaling
+        switch (allMetaData.Orientation) {
+          case 1: resolve(0); break;
+          case 8: resolve(-90); break;
+          case 3: resolve(180); break;
+          case 6: resolve(90); break;
+          default: resolve(0); break;
+        }
       });
-      this.canvas.setWidth(imageObj1.width * scaling);
-      this.canvas.setHeight(imageObj1.height * scaling);
-
-      
-      var imageContainer = document.getElementById('image_container');
-      imageContainer.setAttribute('style', `width: ${imageObj1.width * scaling}px`);
-      
-      this.applyBackgroundConstraint();
-      resolve();
-    };
-  };
+    });
+  }
 
   /**
    * Logo load function
    */
-  loadLogo: any = resolve => {
-    let imageObj2 = new Image();
+  loadLogo() {
+    return new Promise(( resolve, reject ) => {
+      let imageObj2 = new Image();
+  
+      imageObj2.src = sessionStorage.getItem('logo');
+      imageObj2.onload = () => this.fixOrientation(imageObj2)
+        .then( (rotation: number ) => {
+          this.logoImage.image(imageObj2);
 
-    imageObj2.src = sessionStorage.getItem('logo');
-    imageObj2.onload = () => {
-      this.logoImage.image(imageObj2);
+          // Rotation correction
+          let width, height;
+          this.logoImage.offset({x: imageObj2.width / 2, y: imageObj2.height / 2});
+          this.logoImage.rotation(rotation);
+          
+          if (rotation === 0 || rotation === 180) {
+            width = imageObj2.width;
+            height = imageObj2.height;
+          } else {
+            width = imageObj2.height;
+            height = imageObj2.width;
+          }
+    
+          // add the shape to the layer
+          this.logoLayer.clear();
+          this.logoLayer.add(this.logoImage);
+    
+          // add the layer to the stage
+          this.canvas.add(this.logoLayer);
+    
+          // Scaling: the longer side of the logo has to be 5th the size of the shorter image side
+          let longerLogoSide = width > height ? width : height;
+          let shorterImageSide = this.backgroundImage.getWidth() < this.backgroundImage.getHeight() ? this.backgroundImage.getWidth() : this.backgroundImage.getHeight();
+          let scaling = shorterImageSide / longerLogoSide / 5;
+    
+          this.logoLayer.scale({
+            x: scaling,
+            y: scaling
+          });
 
-      // add the shape to the layer
-      this.logoLayer.add(this.logoImage);
-
-      // add the layer to the stage
-      this.canvas.add(this.logoLayer);
-
-      // Scaling: the longer side of the logo has to be 5th the size of the shorter image side
-      let longerLogoSide = imageObj2.width > imageObj2.height ? imageObj2.width : imageObj2.height;
-      let shorterImageSide = this.backgroundImage.getWidth() < this.backgroundImage.getHeight() ? this.backgroundImage.getWidth() : this.backgroundImage.getHeight();
-      let scaling = shorterImageSide / longerLogoSide / 5;
-
-      this.logoLayer.scale({
-        x: scaling,
-        y: scaling
-      });
-
-      this.applyLogoConstraint();
-      resolve();
-    };
-  };
+          // Logo initial position
+          this.logoLayer.position({x: width * scaling * this.logoScale / 2, y: height * scaling * this.logoScale / 2});
+    
+          this.applyLogoConstraint();
+          resolve();
+        });
+    });
+  } 
 
   /**
    * Keep background between canvas bounds
@@ -209,14 +269,9 @@ export class EditorComponent implements OnInit {
       return node.getClassName() === 'Image';
     })[0] as Konva.Image;
 
-    let logoDimensions = {
-      width: logo.width() * this.logoLayer.scaleX() * this.logoImage.scaleX(),
-      height: logo.height() * this.logoLayer.scaleY() * this.logoImage.scaleY()
-    };
-
     let positions = {
-      x: (this.canvas.width() / this.canvas.scaleX() - logoDimensions.width) / 2,
-      y: (this.canvas.height() / this.canvas.scaleY() - logoDimensions.height) / 2
+      x: (this.canvas.width() / this.canvas.scaleX()) / 2,
+      y: (this.canvas.height() / this.canvas.scaleY()) / 2
     };
 
     this.logoLayer.off('dragmove');
@@ -248,36 +303,6 @@ export class EditorComponent implements OnInit {
         });
       });
     }
-
-    let validate = () => {
-      var x = this.logoLayer.x();
-      var y = this.logoLayer.y();
-
-      if(x < 0) {
-        x = 0
-      }
-
-      else if(x + logoDimensions.width > this.canvas.width() / this.canvas.scaleX()) {
-        x = this.canvas.width() / this.canvas.scaleX() - logoDimensions.width;
-      }
-
-      if(y < 0) {
-        y = 0
-      }
-
-      else if(y + logoDimensions.height > this.canvas.height()/ this.canvas.scaleY()) {
-        y = this.canvas.height() / this.canvas.scaleY() - logoDimensions.height;
-      }
-      /*
-      this.logoLayer.position({
-        x: x,
-        y: y
-      });
-      */
-    };
-
-    validate();
-    this.logoLayer.on('dragmove', validate);
 
     this.logoLayer.draw();
   }
