@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { SessionService } from '../../services/session-service/session.service';
 
 @Component({
   selector: 'app-save',
@@ -10,10 +10,10 @@ export class SaveComponent implements OnInit {
 
   public imageSource: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.imageSource = this.route.params['_value']['data'];
+    this.imageSource = this.sessionService.getExportableImage();
   }
 
 }

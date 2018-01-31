@@ -3,6 +3,7 @@ import * as Konva from 'konva';
 import { Router } from '@angular/router';
 import { ImageService } from '../../services/image-service/image.service';
 import * as EXIF from 'exif-js';
+import { SessionService } from '../../services/session-service/session.service';
 
 /**
  * Editor view
@@ -25,7 +26,11 @@ export class EditorComponent implements OnInit {
   verticalCenter: Boolean = false;
   horizontalCenter: Boolean = false;
 
-  constructor(private router: Router, private imageService: ImageService) { }
+  constructor(
+    private router: Router,
+    private imageService: ImageService,
+    private sessionService: SessionService
+  ) { }
 
   /**
    * On component load
@@ -331,7 +336,8 @@ export class EditorComponent implements OnInit {
    */
   save() {
     let hdImage = this.imageService.format(this.canvas.clone() as Konva.Stage, this.backgroundImage);
-    this.router.navigate(['/save', {data: hdImage}]);
+    this.sessionService.storeExportableImage(hdImage);
+    this.router.navigate(['/save']);
 
     /*
     // function from https://stackoverflow.com/a/15832662/512042

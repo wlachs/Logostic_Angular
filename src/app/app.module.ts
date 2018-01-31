@@ -11,6 +11,7 @@ import { PickerButtonsComponent } from './views/uploader/picker-buttons/picker-b
 import { FirstUppercasePipe } from './views/uploader/picker-buttons/first-uppercase.pipe';
 import { ImageService } from './services/image-service/image.service';
 import { SaveComponent } from './views/save/save.component';
+import { SessionService } from './services/session-service/session.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/uploader', pathMatch: 'full' },
@@ -38,6 +39,6 @@ const routes: Routes = [
     )
   ],
   bootstrap: [AppComponent],
-  providers: [ImageService]
+  providers: [ImageService, SessionService]
 })
 export class AppModule { }
