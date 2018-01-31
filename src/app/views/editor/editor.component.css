@@ -26,14 +26,21 @@
     color: #fff;
 }
 
-#reset_button {
+#bg_reset_button {
+    font-size: 19px;
+    font-weight: 200;
+    width: 146px;
+    margin-bottom: 6px;
+}
+
+#save_button {
     font-size: 19px;
     font-weight: 200;
     width: 146px;
 }
 
 .card {
-    margin-top: 13px;
+    margin-bottom: 13px;
     background-color: rgba(240, 173, 78, 0.01);
 }
 
