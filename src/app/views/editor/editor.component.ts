@@ -20,11 +20,17 @@ export class EditorComponent implements OnInit {
   logoLayer: Konva.Layer;
   backgroundImage: Konva.Image;
   logoImage: Konva.Image;
-  advancedSettingsVisible: Boolean = false;
+  advancedSettingsVisible: Boolean = true;
   backgroundScale: number = 1;
   logoScale: number = 1;
   verticalCenter: Boolean = false;
   horizontalCenter: Boolean = false;
+  verticalLetterbox: boolean = false;
+  verticalLetterboxRect: Konva.Rect;
+  verticalLetterboxLayer: Konva.Layer;
+  horizontalLetterbox: boolean = false;
+  horizontalLetterboxRect: Konva.Rect;
+  horizontalLetterboxLayer: Konva.Layer;
 
   constructor(
     private router: Router,
@@ -38,7 +44,7 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
     this.canvas = new Konva.Stage({
       container: 'image_container',
-      width: document.getElementById('image_container').clientWidth,
+      width: document.getElementById('image').clientWidth,
       height: 0
     });
 
@@ -48,6 +54,9 @@ export class EditorComponent implements OnInit {
     this.logoLayer = new Konva.Layer({
       draggable: true
     });
+
+    this.horizontalLetterboxLayer = new Konva.Layer();
+    this.verticalLetterboxLayer = new Konva.Layer();
 
     this.backgroundImage = new Konva.Image({
       x: 0,
@@ -60,6 +69,21 @@ export class EditorComponent implements OnInit {
       y: 0,
       image: undefined
     });
+
+    this.horizontalLetterboxRect = new Konva.Rect({
+      fill: 'grey',
+      opacity: 0.4,
+      visible: false
+    });
+
+    this.verticalLetterboxRect = new Konva.Rect({
+      fill: 'grey',
+      opacity: 0.4,
+      visible: false
+    });
+
+    this.horizontalLetterboxLayer.add(this.horizontalLetterboxRect);
+    this.verticalLetterboxLayer.add(this.verticalLetterboxRect);
 
     // Load bg and logo
     this.loadBg()
@@ -150,6 +174,12 @@ export class EditorComponent implements OnInit {
           });
           this.canvas.setWidth(width * scaling);
           this.canvas.setHeight(height * scaling);
+
+          this.horizontalLetterboxRect.width(2 * width / scaling);
+          this.horizontalLetterboxRect.offsetX(width / scaling);
+
+          this.verticalLetterboxRect.height(2 * height / scaling);
+          this.verticalLetterboxRect.offsetY(height / scaling);
       
           // Set container width
           var imageContainer = document.getElementById('image_container');
@@ -226,12 +256,16 @@ export class EditorComponent implements OnInit {
             this.logoLayer.add(this.logoImage);
       
             // add the layer to the stage
+            this.canvas.add(this.horizontalLetterboxLayer);
+            this.canvas.add(this.verticalLetterboxLayer);
             this.canvas.add(this.logoLayer);
+
             // Logo initial position
             this.logoLayer.position({x: width * scaling * this.logoScale / 2, y: height * scaling * this.logoScale / 2});
           }
     
           this.applyLogoConstraint();
+          
           resolve();
         });
     });
@@ -317,13 +351,42 @@ export class EditorComponent implements OnInit {
       });
     }
 
+    const letterBox = () => {
+      this.horizontalLetterboxLayer.position({
+        x: this.logoLayer.getPosition().x,
+        y: this.logoLayer.getPosition().y,
+      });
+
+      this.verticalLetterboxLayer.position({
+        x: this.logoLayer.getPosition().x,
+        y: this.logoLayer.getPosition().y,
+      });
+
+      this.horizontalLetterboxRect.offsetY(this.logoImage.height() * this.logoLayer.scaleY() * this.logoScale / 2);
+      this.horizontalLetterboxRect.height(this.logoImage.height() * this.logoLayer.scaleY() * this.logoScale);
+
+      this.verticalLetterboxRect.offsetX(this.logoImage.width() * this.logoLayer.scaleX() * this.logoScale / 2);
+      this.verticalLetterboxRect.width(this.logoImage.width() * this.logoLayer.scaleX() * this.logoScale);
+
+      this.horizontalLetterboxLayer.draw();
+      this.verticalLetterboxLayer.draw();
+    };
+
+    this.logoLayer.on('dragmove', letterBox);
+    letterBox();
+
+    this.horizontalLetterboxRect.visible(this.horizontalLetterbox);
+    this.verticalLetterboxRect.visible(this.verticalLetterbox);
+
+    this.horizontalLetterboxLayer.draw();
+    this.verticalLetterboxLayer.draw();
     this.logoLayer.draw();
   }
 
   /**
    * Reset bg to original position
    */
-  bgCenter() {
+  bgReset() {
     this.backgroundLayer.position({
       x: 0,
       y: 0
