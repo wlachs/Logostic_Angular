@@ -205,11 +205,15 @@ export class EditorComponent implements OnInit {
           // add the layer to the stage
           this.canvas.add(this.logoLayer);
     
-          // Scaling: the longer side of the logo has to be 5th the size of the shorter image side
-          let longerLogoSide = width > height ? width : height;
-          let shorterImageSide = this.backgroundImage.getWidth() < this.backgroundImage.getHeight() ? this.backgroundImage.getWidth() : this.backgroundImage.getHeight();
-          let scaling = shorterImageSide / longerLogoSide / 5;
-    
+          // Scaling
+          let scaling = this.canvas.width() / width / this.canvas.scaleX();
+          scaling =
+            scaling * height > this.canvas.height() / this.canvas.scaleY() ?
+              this.canvas.height() / height / this.canvas.scaleY() :
+              scaling;
+            
+          scaling /= 5;
+
           this.logoLayer.scale({
             x: scaling,
             y: scaling
