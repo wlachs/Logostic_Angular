@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session-service/session.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser/src/security/dom_sanitization_service';
 
 @Component({
   selector: 'app-save',
@@ -8,12 +10,13 @@ import { SessionService } from '../../services/session-service/session.service';
 })
 export class SaveComponent implements OnInit {
 
-  public imageSource: string;
+  public imageSource: SafeUrl;
 
-  constructor(private sessionService: SessionService) { }
+  constructor(private sessionService: SessionService, private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.imageSource = this.sessionService.getExportableImage();
+    window.onresize = () => {};
+    this.imageSource = this.domSanitizer.bypassSecurityTrustUrl(this.sessionService.getExportableImage());
   }
 
 }
