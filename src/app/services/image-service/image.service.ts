@@ -14,14 +14,31 @@ export class ImageService {
   /**
   * Upsize and convert canvas elements to image
   * @param canvas 
-  * @param backgroundImage 
   */
-  format(canvas: Konva.Stage, backgroundImage: Konva.Image){
+  format(canvas: Konva.Stage){
+    const EXPORT_SIZE = 768;
+
+    const aspectRatio = canvas.width() / canvas.height();
+    let exportSize: {width: number, height: number} = {width: 0, height: 0};
+    let scaling = {x: canvas.scaleX(), y: canvas.scaleY()};
+
+    if (aspectRatio >= 1) {
+      exportSize.width = EXPORT_SIZE;
+      exportSize.height = EXPORT_SIZE / aspectRatio;
+    }
+    else {
+      exportSize.width = aspectRatio * EXPORT_SIZE;
+      exportSize.height = EXPORT_SIZE;
+    }
+
+    scaling.x *= exportSize.width / canvas.width();
+    scaling.y *= exportSize.height / canvas.height();
+
     // Set canvas size to match image size
-    canvas.setSize({width: backgroundImage.width(), height: backgroundImage.height()});
+    canvas.setSize({width: exportSize.width, height: exportSize.height});
     
-    // Set scaling to 1
-    canvas.scale({x: 1, y: 1});
+    // Set scaling
+    canvas.scale(scaling);
 
     // Apply changes
     canvas.draw();

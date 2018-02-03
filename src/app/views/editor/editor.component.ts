@@ -402,7 +402,7 @@ export class EditorComponent implements OnInit {
    * Export canvas as a JPG
    */
   save() {
-    let hdImage = this.imageService.format(this.canvas.clone() as Konva.Stage, this.backgroundImage);
+    let hdImage = this.imageService.format(this.canvas.clone() as Konva.Stage);
     this.sessionService.storeExportableImage(hdImage);
     this.router.navigate(['/save']);
   }
