@@ -81,7 +81,6 @@ export class UploaderComponent implements OnInit {
     this.encoded++;
 
     if (this.encoded === this.images.length) {
-      console.log('All images encoded, navigate...')
       this.router.navigate(['/editor']);
     }
   }
