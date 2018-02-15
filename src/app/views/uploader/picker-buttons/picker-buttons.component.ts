@@ -10,7 +10,7 @@ export class PickerButtonsComponent implements OnInit {
 
   @Output() uploadEvent: EventEmitter<[{name: string, file: File}]> = new EventEmitter();
 
-  buttons: [{name: string, checkPosition: string, uploaded: boolean, file: File}] = [
+  buttons: {name: string, checkPosition: string, uploaded: boolean, file: File}[] = [
     {
       name: 'image',
       checkPosition: 'left',
