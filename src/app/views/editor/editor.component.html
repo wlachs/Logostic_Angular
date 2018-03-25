@@ -47,6 +47,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="input-group">
+                    Letterbox color
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="color" [(ngModel)]="letterboxColor" (ngModelChange)="applyLogoConstraint();">
+                        </div>
+                    </div>
+                </div>
                 <button id="bg_reset_button" (click)="bgReset()" class="btn btn-primary btn-danger mx-auto">Reset image</button>
                 <button id="save_button" class="btn btn-secondary btn-success mx-auto" (click)="save()">Save</button>
             </div>
