@@ -31,6 +31,7 @@ export class EditorComponent implements OnInit {
   horizontalLetterbox: boolean = false;
   horizontalLetterboxRect: Konva.Rect;
   horizontalLetterboxLayer: Konva.Layer;
+  letterboxColor: string = "#000000";
 
   constructor(
     private router: Router,
@@ -71,13 +72,13 @@ export class EditorComponent implements OnInit {
     });
 
     this.horizontalLetterboxRect = new Konva.Rect({
-      fill: 'grey',
+      fill: this.letterboxColor,
       opacity: 0.4,
       visible: false
     });
 
     this.verticalLetterboxRect = new Konva.Rect({
-      fill: 'grey',
+      fill: this.letterboxColor,
       opacity: 0.4,
       visible: false
     });
@@ -361,6 +362,9 @@ export class EditorComponent implements OnInit {
         x: this.logoLayer.getPosition().x,
         y: this.logoLayer.getPosition().y,
       });
+
+      this.horizontalLetterboxRect.fill(this.letterboxColor);
+      this.verticalLetterboxRect.fill(this.letterboxColor);
 
       this.horizontalLetterboxRect.offsetY(this.logoImage.height() * this.logoLayer.scaleY() * this.logoScale / 2);
       this.horizontalLetterboxRect.height(this.logoImage.height() * this.logoLayer.scaleY() * this.logoScale);
