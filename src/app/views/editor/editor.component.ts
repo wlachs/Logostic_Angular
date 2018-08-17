@@ -196,10 +196,10 @@ export class EditorComponent implements OnInit {
    * Fix iPhone image rotation bug
    * @param imageHTML Source image
    */
-  fixOrientation(imageHTML: HTMLImageElement) {
+  fixOrientation(imageHTML: any) {
     return new Promise( (resolve, reject) => {
       EXIF.getData(imageHTML, function() {
-        var allMetaData = EXIF.getAllTags(this);
+        let allMetaData = EXIF.getAllTags(this);
 
         switch (allMetaData.Orientation) {
           case 1: resolve(0); break;
