@@ -45,7 +45,6 @@ export class ImageService {
 
     // Convert canvas to DataURL
     let raw = canvas.toDataURL({
-        callback: undefined,
         mimeType: "image/jpeg",
         x: 0,
         y: 0,
